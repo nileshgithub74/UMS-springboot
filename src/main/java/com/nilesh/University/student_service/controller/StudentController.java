@@ -37,7 +37,9 @@ public class StudentController {
     @Column(nullable = false)
     private String course;
 
+    @Column(nullable = false)
     private String gender;
+
     private String address;
     private String city;
 
