@@ -1,56 +1,41 @@
 package com.nilesh.University.student_service.controller;
 
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.nilesh.University.student_service.dto.StudentRequestDTO;
+import com.nilesh.University.student_service.dto.StudentResponeDTO;
+import com.nilesh.University.student_service.service.StudentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "students")
+@RestController
+@RequestMapping("/api/students")
 public class StudentController {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private final StudentService studentService;
 
-    @Column(nullable = false, length = 50)
-    private String firstname;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
-    @Column(nullable = false, length = 50)
-    private String lastname;
+    //get Mapping
+    @GetMapping("/welcome")
+    public ResponseEntity<String> welcome() {
+        return ResponseEntity.status(HttpStatus.OK).body("Welcome to the Student Dashbord");
+    }
 
-    @Column(nullable = false, length = 100, unique = true)
-    private String email;
+    // create students
 
-    private LocalDateTime dateOfBirth;
+    public  ResponseEntity<StudentResponeDTO> createStudent( @RequestBody StudentRequestDTO studentRequestDTO){
+     StudentResponeDTO createdStudent =    studentService.createStudents(studentRequestDTO);
 
-    @Column(nullable = false)
-    private String course;
+     return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
 
-    @Column(nullable = false)
-    private String gender;
-
-    private String address;
-    private String city;
-
-    @Column(nullable = false)
-    private LocalDate addmissionDate;
-
-    @Column(nullable = false)
-    private String status;
-
-    private LocalDateTime created_At;
-    private LocalDateTime updated_At;
+    }
 
 
 }
