@@ -28,7 +28,7 @@ public class Student {
     @Column(nullable = false, length = 100, unique = true)
     private String email;
 
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(nullable = false)
     private String course;

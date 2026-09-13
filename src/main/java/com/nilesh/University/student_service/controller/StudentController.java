@@ -4,12 +4,10 @@ package com.nilesh.University.student_service.controller;
 import com.nilesh.University.student_service.dto.StudentRequestDTO;
 import com.nilesh.University.student_service.dto.StudentResponeDTO;
 import com.nilesh.University.student_service.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -30,10 +28,11 @@ public class StudentController {
 
     // create students
 
-    public  ResponseEntity<StudentResponeDTO> createStudent( @RequestBody StudentRequestDTO studentRequestDTO){
-     StudentResponeDTO createdStudent =    studentService.createStudents(studentRequestDTO);
+    @PostMapping
+    public ResponseEntity<StudentResponeDTO> createStudent(@Valid @RequestBody StudentRequestDTO studentRequestDTO) {
+        StudentResponeDTO createdStudent = studentService.createStudents(studentRequestDTO);
 
-     return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
 
     }
 
