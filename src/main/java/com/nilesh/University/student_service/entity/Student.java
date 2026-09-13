@@ -1,9 +1,11 @@
 package com.nilesh.University.student_service.entity;
 
+import com.nilesh.University.student_service.StudentEnum.DeletedStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.sql.Delete;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,6 +46,14 @@ public class Student {
 
     @Column(nullable = false)
     private String status;
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "is_deleted",
+            columnDefinition = "VARCHAR(10) DEFAULT 'NO' "
+    )
+
+    private DeletedStatus isDeleted = DeletedStatus.NO;
 
 
     @Column(nullable = false)

@@ -9,4 +9,10 @@ import java.util.List;
 public interface StudentService {
     APIResponseDTO<StudentResponeDTO> createStudents(StudentRequestDTO studentRequestDTO);
     APIResponseDTO<List<StudentResponeDTO>> getAllStudents();
+    APIResponseDTO<StudentResponeDTO> findStudentById(Long id);
+    APIResponseDTO<StudentResponeDTO> deleteStudent(Long id);
+    APIResponseDTO<StudentResponeDTO> softdeleteStudent(Long id);
+    APIResponseDTO<StudentResponeDTO> updatedStudent(Long id, StudentRequestDTO studentRequestDTO);
+
+
 }

@@ -39,14 +39,37 @@ public class StudentMapper {
 
         StudentResponeDTO responeDTO = new StudentResponeDTO();
 
+        String name = student.getFirstname()+ " " + student.getLastname();
+
         responeDTO.setEmail(student.getEmail());
-        responeDTO.setFirstname(student.getFirstname());
+        responeDTO.setName(name);
+
         responeDTO.setId(student.getId());
-        responeDTO.setLastname(student.getLastname());
+
         responeDTO.setDepartement(student.getDepartment());
+
+        responeDTO.setUpdated_At(student.getUpdated_At());
+        responeDTO.setCreated_At(student.getCreated_At());
 
         return responeDTO;
 
+
+    }
+
+    public static Student  updateRequest(Student student, StudentRequestDTO dto){
+
+        student.setFirstname(dto.getFirstname());
+        student.setLastname(dto.getLastname());
+        student.setEmail(dto.getEmail());
+        student.setDateOfBirth(dto.getDateOfBirth());
+        student.setCourse(dto.getCourse());
+        student.setGender(dto.getGender());
+        student.setAddress(dto.getAddress());
+        student.setCity(dto.getCity());
+
+        student.setUpdated_At(LocalDateTime.now());
+
+        return student;
 
     }
 
