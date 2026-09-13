@@ -9,11 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class StudentResponeDTO {
-    private Long Id;
+    private Long id;
     private String firstname;
     private String lastname;
     private String email;
-    private String message;
     private String departement;
 
 }

@@ -43,7 +43,6 @@ public class StudentMapper {
         responeDTO.setFirstname(student.getFirstname());
         responeDTO.setId(student.getId());
         responeDTO.setLastname(student.getLastname());
-        responeDTO.setMessage("Student Created successfully");
         responeDTO.setDepartement(student.getDepartment());
 
         return responeDTO;
